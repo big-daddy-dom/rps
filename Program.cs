@@ -1,52 +1,28 @@
-﻿// See https://aka.ms/new-console-template for more information
-// JS (Import) CS Using; 
-// every line ends with a semicolon (;)
-//upper camel case for class names, lower camel case for variables and functions
+﻿//write a rock paper scissors game, human vs computer
+//use a random number generator to generate the computer's choice
 using System;
 using System.Threading;
-Random choice = new Random();
-bool playing = true;
-string player;
-string computer;
+using System.Collections.Generic;   
 
-while (playing)
+bool running = true;
+while (running)
 {
-    Console.WriteLine("Rock, Paper, Scissors, Die:");
-string playerChoice = Console.ReadLine();
-int computerChoice = choice.Next(1, 4);
-switch (computerChoice)
+Console.WriteLine("Welcome to Rock Paper Scissors!");
+Console.WriteLine("Please enter your name: ");
+string name = Console.ReadLine();
+Console.WriteLine("Hello " + name + "!");
+Console.WriteLine("Please enter your choice: (R = Rock, P = Paper, S = Scissors) ");
+char input = Console.ReadKey().KeyChar;
+Console.WriteLine();
+}
+
+
+
+
+public class Moves
 {
-    case 1:  Console.WriteLine("PC picked rock");
-    break;
-case 2: Console.WriteLine("pc picked paper");
-break;
-case 3: Console.WriteLine("pc picked scissors");
-break;
+  public List<Move> moves = new List<Move>(){
+    
+  };
 
 };
-if (playerChoice == "1")
-{
-    Console.WriteLine("rock");
-    break;
-}
-else if (playerChoice == "2")
-{
-    Console.WriteLine("paper");
-    break;
-
-}
-else {
-    Console.WriteLine("scissors");
-    break;
-}
-
-Thread.Sleep(1500);
-Console.Clear();
-Console.WriteLine();
-
-
-
-}
-
-
-
