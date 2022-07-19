@@ -1,106 +1,73 @@
-﻿//write a rock paper scissors game, human vs computer
-//use a random number generator to generate the computer's choice
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
-namespace RockPaperScissors
+bool game = true;
+bool choose = false;
+
+char userChoice = 'a';
+char computerChoice = 'a';
+
+Console.WriteLine("Welcome to Rock Paper Scissors! What is your name?");
+string userName = Console.ReadLine();
+
+while (game)
 {
-    class Program
+    Console.WriteLine("{0}, would you like to play Rock, Paper, or Scissors?", userName);
+
+
+
+    char choice = Console.ReadKey().KeyChar;
+    switch (choice)
     {
-        static void Main(string[] args)
-        {
-            string playerChoice;
-            string computerChoice;
-            int playerScore = 0;
-            int computerScore = 0;
-            int ties = 0;
-            int round = 1;
-            string playAgain;
-
-            do
-            {
-                Console.WriteLine("Welcome to Rock Paper Scissors!");
-                Console.WriteLine("Please enter your choice: (R)ock, (P)aper, (S)cissors");
-                playerChoice = Console.ReadLine();
-                playerChoice = playerChoice.ToUpper();
-                Random rnd = new Random();
-                int computerNumber = rnd.Next(1, 4);
-                if (computerNumber == 1)
-                {
-                    computerChoice = "ROCK";
-                }
-                else if (computerNumber == 2)
-                {
-                    computerChoice = "PAPER";
-                }
-                else
-                {
-                    computerChoice = "SCISSORS";
-                }
-                Console.WriteLine("The computer chose " + computerChoice + ".");
-                if (playerChoice == computerChoice)
-                {
-                    Console.WriteLine("It's a tie!");
-                    ties++;
-                }
-                else if (playerChoice == "ROCK")
-                {
-                    if (computerChoice == "PAPER")
-                    {
-                        Console.WriteLine("The computer wins!");
-                        computerScore++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("You win!");
-                        playerScore++;
-                    }
-                }
-                else if (playerChoice == "PAPER")
-                {
-                    if (computerChoice == "SCISSORS")
-                    {
-                        Console.WriteLine("The computer wins!");
-                        computerScore++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("You win!");
-                        playerScore++;
-                    }
-                }
-                else if (playerChoice == "SCISSORS")
-                {
-                    if (computerChoice == "ROCK")
-                    {
-                        Console.WriteLine("The computer wins!");
-                        computerScore++;
-                    }
-                    else
-                    {
-                        Console.WriteLine("You win!");
-                        playerScore++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice!");
-                }
-                Console.WriteLine("Your score is " + playerScore + ".");
-                Console.WriteLine("The computer's score is " + computerScore + ".");
-                Console.WriteLine("There have been " + ties + " ties.");
-                Console.WriteLine("Round " + round + " is over.");
-                round++;
-                Console.WriteLine("Would you like to play again? (Y/N)");
-                playAgain = Console.ReadLine();
-                playAgain = playAgain.ToUpper();
-            } while (playAgain == "Y");
-            Console.WriteLine("Thanks for playing!");
-        }
+        case 'r':
+            Console.WriteLine("You chose rock");
+            userChoice = 'r';
+            break;
+        case 'p':
+            Console.WriteLine("You chose paper");
+            userChoice = 'p';
+            break;
+        case 's':
+            Console.WriteLine("You chose scissors");
+            userChoice = 's';
+            break;
+        default:
+            Console.WriteLine("You did not choose rock, paper, or scissors");
+            Console.WriteLine("Please enter a valid choice");
+            break;
     }
+
+    Random roll = new Random();
+    int computerRoll = roll.Next(1, 4);
+    switch (computerRoll)
+    {
+        case 1:
+            Console.WriteLine("The computer chose rock");
+            computerChoice = 'r';
+            break;
+        case 2:
+            Console.WriteLine("The computer chose paper");
+            computerChoice = 'p';
+            break;
+        case 3:
+            Console.WriteLine("The computer chose scissors");
+            computerChoice = 's';
+            break;
+        default:
+            Console.WriteLine("The computer did not choose rock, paper, or scissors");
+            break;
+    }
+
+    if (userChoice == computerChoice)
+    {
+      Console.WriteLine("It's a tie!");
+      choose = false;
+      game = true;
+      Thread.Sleep(1000);
+    
+    }
+
+
+
 }
-
-
